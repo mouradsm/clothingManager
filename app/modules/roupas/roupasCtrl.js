@@ -24,7 +24,7 @@
 		function Roupas(RoupasService) {
 			/*jshint validthis: true */
 			var vm = this;
-			// vm.roupas = RoupasService.getRoupasList();
+			vm.roupas = RoupasService.getRoupasList();
 			console.log(RoupasService.getRoupasList());
 		}
 

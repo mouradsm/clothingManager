@@ -19,21 +19,19 @@
 
 		function Roupas ($http, $firebaseArray, $firebaseObject) {
 			var ref = new Firebase("https://burning-fire-7475.firebaseio.com/");
-			// var data = [
-			// 	{'id': '00001','valor': '30.50', 'descricao': 'Blusinha rosa'},
-			// 	{'id': '00002','valor': '60.50', 'descricao': 'Blusinha preta'},
-			// 	{'id': '00003','valor': '10.50', 'descricao': 'Blusinha branca'},
-			// 	{'id': '00004','valor': '20.50', 'descricao': 'Blusinha azul'}
-			// ];
-			
-			var itemRef = ref.child('itens');
-
+			var data = [
+				{'id': '00001','valor': '30.50', 'descricao': 'Blusinha rosa'},
+				{'id': '00002','valor': '60.50', 'descricao': 'Blusinha preta'},
+				{'id': '00003','valor': '10.50', 'descricao': 'Blusinha branca'},
+				{'id': '00004','valor': '20.50', 'descricao': 'Blusinha azul'}
+			];
+						
 			return {
 				getRoupasList: getRoupasList
 			};
 
 			function getRoupasList() {
-				return $firebaseObject(itemRef);
+				return data;
 			}
 
 		}
