@@ -1,0 +1,20 @@
+{
+  "generator-angm": {
+    "appName": "clothingmanager",
+    "angularCookies": true,
+    "angularAnimate": true,
+    "angularSanitize": true,
+    "angularMaterial": true,
+    "modules": [
+      {
+        "name": "roupas"
+      }
+    ],
+    "menu": [
+      {
+        "link": "roupas",
+        "title": "Roupas"
+      }
+    ]
+  }
+}

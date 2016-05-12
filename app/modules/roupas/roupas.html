@@ -1,0 +1,22 @@
+<div class="md-padding" layout="column" ng-controller="RoupasCtrl as vm" ng-cloak>
+	<md-card>
+		<md-card-content>
+			<h2 class="md-title text-center">Listagem de Roupas</h2>
+			
+			<md-input-container class="md-block" flex-gt-xs>
+		        <label>Busca</label>
+		       	<input ng-model="search">
+	      </md-input-container>
+			
+			<md-content>
+				<div flex>
+					<md-list-item  ng-repeat="item in vm.roupas |filter:search"  flex="33">
+						<p> {{ 'Dona: '+'Érica Nunes' + ' Valor: ' + item.valor + ' Desc: ' + item.descricao }}</p>
+						<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>
+					</md-list-item>
+				</div>
+			</md-content>
+			<md-divider></md-divider>
+		</md-card-content>
+	</md-card>
+</div>
