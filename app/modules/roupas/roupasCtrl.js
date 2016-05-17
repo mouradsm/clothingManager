@@ -25,7 +25,7 @@
 			/*jshint validthis: true */
 			var vm = this;
 			vm.roupas = RoupasService.getRoupasList();
-			console.log(RoupasService.getRoupasList());
+			// console.log(RoupasService.getRoupasList());
 		}
 
 })();

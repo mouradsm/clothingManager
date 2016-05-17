@@ -10,10 +10,11 @@
 			
 			<md-content>
 				<div flex>
-					<md-list-item  ng-repeat="item in vm.roupas |filter:search"  flex="33">
+					<!-- <md-list-item  ng-repeat="item in vm.roupas |filter:search"  flex="33">
 						<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>
 						<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>
-					</md-list-item>
+					</md-list-item> -->
+					{{vm.roupas |json}}
 				</div>
 			</md-content>
 			<md-divider></md-divider>
