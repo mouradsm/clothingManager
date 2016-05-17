@@ -26,6 +26,7 @@
 
 			function getRoupasList() {
 				var data = $firebaseObject(ref.child('itens'));
+				
 				return data;
 			}
 		}
