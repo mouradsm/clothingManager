@@ -25,7 +25,17 @@
 			/*jshint validthis: true */
 			var vm = this;
 			vm.roupas = RoupasService.getRoupasList();
+			vm.clientes = RoupasService.getClientesList();
 			// console.log(RoupasService.getRoupasList());
+
+			vm.clearValue = (function() {
+				vm.search = undefined;
+			});
+
+			vm.Vender = (function(){
+				console.log('hello');
+				RoupasService.venderRoupa('001');
+			});
 		}
 
 })();

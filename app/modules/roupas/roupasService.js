@@ -22,12 +22,24 @@
 
 			return {
 				getRoupasList: getRoupasList,
+				getClientesList: getClientesList,
+				venderRoupa: venderRoupa,
 			};
 
 			function getRoupasList() {
-				var data = $firebaseObject(ref.child('itens'));
+				var data = $firebaseArray(ref.child('itens'));
 				
 				return data;
+			}
+
+			function getClientesList() {
+				var data = $firebaseArray(ref.child('clientes'));
+
+				return data;
+			}
+
+			function venderRoupa(id) {
+				console.log($firebaseObject(ref.child('clientes').child(id)));
 			}
 		}
 	})();

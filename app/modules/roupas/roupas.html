@@ -1,25 +1,31 @@
 <div class="md-padding" layout="column" ng-controller="RoupasCtrl as vm" ng-cloak>
 	<md-card>
 		<md-card-content>
-			<h2 class="md-title text-center">Listagem de Roupas</h2>
-			
-			<md-input-container class="md-block" flex-gt-xs>
-		        <label>Busca</label>
-		       	<input ng-model="search">
-	      </md-input-container>
-			
 			<md-content>
-				<div flex>
-					<!-- <md-list-item  ng-repeat="item in vm.roupas |filter:search"  flex="33">
-						<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>
-						<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>
-					</md-list-item> -->
-					<md-list-item ng-repeat="item in vm.roupas"> 
-						{{item.descricao}}
-					</md-list-item>
-				</div>
+				<h2 class="md-title text-center">Listagem de Roupas</h2>
+				<div class="md-padding" ng-cloak>
+					<div layout="row" layout-align="center center">
+						<md-input-container class="md-block" flex="100">
+							<md-select ng-model="vm.search" aria-label="Clientes">
+								<md-optgroup label="items">
+									<md-option ng-value="item.id" ng-repeat="item in vm.clientes">{{item.nome |uppercase}}</md-option>
+								</md-optgroup>
+							</md-select>
+						</md-input-container>
+						<md-button ng-click="vm.clearValue()" ng-disabled="!vm.search">
+							<ng-md-icon icon="clear"></ng-md-icon>
+						</md-button>
+					</div>
+				</div>			
+				<md-list-item  ng-repeat="item in vm.roupas |filter:vm.search"  flex="33">
+					<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>
+					<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>
+				</md-list-item>
+				<md-divider></md-divider>
+				<section layout="row" layout-md="row" layout-align="center center" layout-wrap>
+					<md-button aria-label="vender" flex="20" flex-md="100" class="md-raised md-primary" ng-click="vm.Vender()">Vender</md-button>
+				</section>
 			</md-content>
-			<md-divider></md-divider>
 		</md-card-content>
 	</md-card>
 </div>
