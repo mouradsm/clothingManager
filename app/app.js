@@ -13,7 +13,7 @@
 	angular.module('clothingmanager', [
 		'ngResource',
 		'ngAria',
-		 'ngMaterial',
+		'ngMaterial',
 		'ngMdIcons',
 		'ngCookies',
 		'ngAnimate',
