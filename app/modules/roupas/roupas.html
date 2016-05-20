@@ -12,14 +12,14 @@
 								</md-optgroup>
 							</md-select>
 						</md-input-container>
-						<md-button ng-click="vm.clearValue()" ng-disabled="!vm.search">
+						<md-button aria-label="limpar" ng-click="vm.clearValue()" ng-disabled="!vm.search">
 							<ng-md-icon icon="clear"></ng-md-icon>
 						</md-button>
 					</div>
 				</div>			
 				<md-list-item  ng-repeat="item in vm.roupas |filter:vm.search"  flex="33">
-					<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>
-					<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>
+					<p> {{ item.descricao }} - <b>R$ {{item.valor }} - {{item.id}}</b></p>
+					<md-checkbox class='md-secondary' ng-model='selectedItem' ng-value="00{{item.id}}"></md-checkbox>
 				</md-list-item>
 				<md-divider></md-divider>
 				<section layout="row" layout-md="row" layout-align="center center" layout-wrap>

@@ -24,6 +24,7 @@
 		function Roupas(RoupasService) {
 			/*jshint validthis: true */
 			var vm = this;
+
 			vm.roupas = RoupasService.getRoupasList();
 			vm.clientes = RoupasService.getClientesList();
 			// console.log(RoupasService.getRoupasList());
@@ -32,10 +33,10 @@
 				vm.search = undefined;
 			});
 
-			vm.Vender = (function(){
-				console.log('hello');
-				RoupasService.venderRoupa('001');
-			});
+			vm.Vender = function(){
+				console.log(vm);
+				/*RoupasService.venderRoupa('001');*/
+			};
 		}
 
 })();
