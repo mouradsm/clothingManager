@@ -38,8 +38,15 @@
 				return data;
 			}
 
-			function venderRoupa(id) {
-				console.log($firebaseObject(ref.child('clientes').child(id)));
+			function venderRoupa(itens) {
+				//console.log($firebaseObject(ref.child('clientes').child(id)));
+				
+				itens.forEach(function(){
+					ref.child('itens').child(id).update({
+						"vendido": false
+					});
+				});
+
 			}
 		}
 	})();
