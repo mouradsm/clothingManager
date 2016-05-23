@@ -25,6 +25,7 @@
 				getClientesList: getClientesList,
 				venderRoupa: venderRoupa,
 				devolverRoupa: devolverRoupa,
+				getClienteByItemId: getClienteByItemId
 			};
 
 			function getRoupasList() {
@@ -39,6 +40,16 @@
 				return data;
 			}
 
+			function getClienteByItemId(id) {
+				var cliente;
+				ref.child('itens/'+(id-1)).on('value', function(itemSnap){
+					ref.child('clientes').child(itemSnap.child('cliente_id').val()).on('value', function(snap){
+						cliente = snap.child('nome').val();
+					});			
+				});				
+
+				return cliente;
+			}
 
 			//TODO: REFATORAR PARA UMA FUNÇÃO SÓ
 			function venderRoupa(itens) {

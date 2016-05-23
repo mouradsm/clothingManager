@@ -38,6 +38,11 @@
 				vm.selectedItens = [];
 			});
 
+			vm.pega = (function(){
+				 var a = RoupasService.getClienteByItemId('001');
+				 return a;
+			});
+
 			vm.toggle = (function (item, list){
 				var idx = list.indexOf(item);
 				if(idx > -1) 
