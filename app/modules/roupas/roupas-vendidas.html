@@ -1,0 +1,17 @@
+<div class="md-padding" layout="column" ng-controller="RoupasVendidasCtrl as vm" ng-cloak>
+	<md-card>
+		<md-card-content>
+			<md-content>
+				<h2 class="md-title text-center">Listagem de Roupas Vendidas</h2>
+				<md-list-item  ng-repeat="item in vm.roupas |filter: item.vendido != false"  flex="33">
+					<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>
+					<md-checkbox class='md-secondary' ng-checked="vm.exists(item.id, vm.selectedItens)" ng-click="vm.toggle(item.id, vm.selectedItens)" ng-value="{{item.id}}"></md-checkbox>
+				</md-list-item>
+				<md-divider></md-divider>
+				<section layout="row" layout-md="row" layout-align="center center" layout-wrap>
+					<md-button aria-label="vender" flex="20" flex-md="100" class="md-raised md-primary" ng-click="vm.Devolver()">Devolver</md-button>
+				</section>
+			</md-content>
+		</md-card-content>
+	</md-card>
+</div>

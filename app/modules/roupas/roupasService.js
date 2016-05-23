@@ -24,6 +24,7 @@
 				getRoupasList: getRoupasList,
 				getClientesList: getClientesList,
 				venderRoupa: venderRoupa,
+				devolverRoupa: devolverRoupa,
 			};
 
 			function getRoupasList() {
@@ -38,15 +39,30 @@
 				return data;
 			}
 
+
+			//TODO: REFATORAR PARA UMA FUNÇÃO SÓ
 			function venderRoupa(itens) {
-				//console.log($firebaseObject(ref.child('clientes').child(id)));
-				
-				itens.forEach(function(){
-					ref.child('itens').child(id).update({
-						"vendido": false
+				itens.forEach(function(item){
+					//TODO: REFACTOR NESSA COISA HORRÍVEL
+					ref.child('itens/'+(item-1)).update({
+						"vendido": true
+					}, function(err){
+						if(err)
+							return err;
 					});
 				});
+			}
 
+			function devolverRoupa(itens) {
+				itens.forEach(function(item){
+					//TODO: REFACTOR NESSA COISA HORRÍVEL
+					ref.child('itens/'+(item-1)).update({
+						"vendido": false
+					}, function(err){
+						if(err)
+							return err;
+					});
+				});
 			}
 		}
 	})();

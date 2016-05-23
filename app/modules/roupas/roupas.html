@@ -17,9 +17,9 @@
 						</md-button>
 					</div>
 				</div>			
-				<md-list-item  ng-repeat="item in vm.roupas |filter:vm.search"  flex="33">
+				<md-list-item  ng-repeat="item in vm.roupas | filter:vm.search |filter: item.vendido == false"  flex="33">
 					<p> {{ item.descricao }} - <b>R$ {{item.valor }} - {{item.id}}</b></p>
-					<md-checkbox class='md-secondary' ng-model='selectedItem' ng-value="00{{item.id}}"></md-checkbox>
+					<md-checkbox class='md-secondary' ng-checked="vm.exists(item.id, vm.selectedItens)" ng-click="vm.toggle(item.id, vm.selectedItens)" ng-value="{{item.id}}"></md-checkbox>
 				</md-list-item>
 				<md-divider></md-divider>
 				<section layout="row" layout-md="row" layout-align="center center" layout-wrap>

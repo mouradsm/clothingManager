@@ -23,8 +23,12 @@
 				
 					{
 						link: 'roupas',
-							name: 'Roupas'
+							name: 'Roupas',
 					},
+					{
+						link: 'roupas-vendidas',
+							name: 'Roupas vendidas'
+					}
 			    
 		  	];
 

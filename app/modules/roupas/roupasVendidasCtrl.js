@@ -11,7 +11,7 @@
 
   	angular
 		.module('roupas')
-		.controller('RoupasCtrl', Roupas);
+		.controller('RoupasVendidasCtrl', Roupas);
 
 		Roupas.$inject = ['RoupasService'];
 
@@ -33,8 +33,8 @@
 				vm.search = undefined;
 			});
 
-			vm.Vender = (function(){
-				RoupasService.venderRoupa(vm.selectedItens);
+			vm.Devolver = (function(){
+				RoupasService.devolverRoupa(vm.selectedItens);
 				vm.selectedItens = [];
 			});
 

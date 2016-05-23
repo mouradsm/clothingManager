@@ -17,6 +17,11 @@ angular.module('roupas')
 				templateUrl: 'app/modules/roupas/roupas.html',
 				controller: 'RoupasCtrl',
 				controllerAs: 'vm'
+			}).state('home.roupas-vendidas', {
+				url:'/roupas',
+				templateUrl: 'app/modules/roupas/roupas-vendidas.html',
+				controller: 'RoupasCtrl',
+				controllerAs: 'vm'
 			});
 
 		
