@@ -20,7 +20,12 @@ angular.module('roupas')
 			}).state('home.roupas-vendidas', {
 				url:'/roupas',
 				templateUrl: 'app/modules/roupas/roupas-vendidas.html',
-				controller: 'RoupasCtrl',
+				controller: 'RoupasVendidasCtrl',
+				controllerAs: 'vm'
+			}).state('home.roupas-cadastro', {
+				url:'/roupas',
+				templateUrl: 'app/modules/roupas/roupas-cadastro.html',
+				controller: 'RoupasCadastroCtrl',
 				controllerAs: 'vm'
 			});
 

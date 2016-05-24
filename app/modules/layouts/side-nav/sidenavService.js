@@ -28,6 +28,10 @@
 					{
 						link: 'roupas-vendidas',
 							name: 'Roupas vendidas'
+					},
+					{
+						link: 'roupas-cadastro',
+							name: 'Cadastro de Roupas'
 					}
 			    
 		  	];
