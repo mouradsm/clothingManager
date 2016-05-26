@@ -1,0 +1,26 @@
+<div ng-controller="RoupasCadastroCtrl" layout="column" ng-cloak>
+	<md-card>
+		<md-card-content>
+			<md-content layout-padding>
+				<div>
+			      <form name="userForm"> 
+			        <div layout-gt-sm="row" layout-gt-md="column" layout-md="row" layout-sm="row" layout-xl="row">
+				        <md-input-container class="md-block" flex-md="20" flex-sm="20" flex-xl="20">
+				          <label>Código</label>
+				          <input ng-model="vm.id">
+			        	</md-input-container>
+				        <md-input-container class="md-block" flex-md="70" flex-sm="80" flex-xl="80">
+				            <label>Nome</label>
+				            <input ng-model="vm.nome" >
+				        </md-input-container>
+			        </div>
+			        <section layout="row" layout-md="row" layout-align="center center" layout-wrap>
+							<md-button aria-label="vender" flex="20" flex-md="100" class="md-raised md-primary" ng-click="vm.cadastrar()">Cadastrar</md-button>
+						</section>
+	      		  </form>
+				</div>
+	  		</md-content>
+		</md-card-content>
+	</md-card>
+</div>
+

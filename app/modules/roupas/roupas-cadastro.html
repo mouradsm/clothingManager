@@ -7,7 +7,7 @@
 			        <div layout-gt-sm="row" layout-gt-md="column" layout-md="row" layout-lg="column">
 				        <md-input-container class="md-block" flex-md="10" flex-lg="100">
 				          <label>Dono</label>	
-					      <md-select ng-model="select">
+					      <md-select ng-model="vm.select">
 					        <md-option ng-repeat="cliente in vm.clientes" value="{{cliente.id}}">
 					           {{cliente.id + ' - ' + cliente.nome}}
 					        </md-option>
@@ -19,7 +19,7 @@
 			        	</md-input-container>
 				        <md-input-container class="md-block" flex-md="20" flex-lg="80">
 				            <label>Preço</label>
-				            <input ng-model="vm.valor">
+				            <input ng-model="vm.valor" type="number">
 				        </md-input-container>
 			        </div>
 			        <section layout="row" layout-md="row" layout-align="center center" layout-wrap>

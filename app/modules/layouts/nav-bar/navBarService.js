@@ -26,6 +26,11 @@
 							name: 'Roupas'
 					},
 			    
+					{
+						link: 'clientes',
+							name: 'Clientes'
+					},
+			    
 		  	];
 
 			return {

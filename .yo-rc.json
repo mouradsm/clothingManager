@@ -8,12 +8,19 @@
     "modules": [
       {
         "name": "roupas"
+      },
+      {
+        "name": "clientes"
       }
     ],
     "menu": [
       {
         "link": "roupas",
         "title": "Roupas"
+      },
+      {
+        "link": "clientes",
+        "title": "Clientes"
       }
     ]
   }

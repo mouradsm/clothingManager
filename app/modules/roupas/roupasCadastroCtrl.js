@@ -26,6 +26,12 @@
 			var vm = this;
 
 			vm.clientes = RoupasService.getClientesList();
-						
+
+			vm.cadastrar = (function(){
+				RoupasService.cadastrarRoupa(vm.select,vm.desc,vm.valor);
+				vm.select = undefined;
+				vm.desc = undefined;
+				vm.valor = undefined;
+			});
 		}
 })();

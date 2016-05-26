@@ -18,10 +18,11 @@
 		'ngCookies',
 		'ngAnimate',
 		'ngSanitize',
-		'firebase',
 		'ui.router',
+		'firebase',
 		'home',
 		'roupas',
+		'clientes',
 	]);
 
 })();

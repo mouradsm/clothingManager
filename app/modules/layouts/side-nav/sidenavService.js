@@ -23,17 +23,20 @@
 				
 					{
 						link: 'roupas',
-							name: 'Roupas',
+							name: 'Roupas'
 					},
 					{
 						link: 'roupas-vendidas',
-							name: 'Roupas vendidas'
+							name:'Roupas Vendidas'
 					},
 					{
 						link: 'roupas-cadastro',
-							name: 'Cadastro de Roupas'
-					}
-			    
+							name:'Cadastro Roupas'
+					},
+					{
+						link: 'clientes',
+							name: 'Clientes'
+					}			    
 		  	];
 
 			return {

@@ -35,6 +35,11 @@ module.exports = function (config) {
 			'app/modules/roupas/roupasRoute.js',
 			'app/modules/roupas/roupasService.js',
 			'app/modules/roupas/roupas-test.js',
+			'app/modules/clientes/clientesModule.js',
+			'app/modules/clientes/clientesCtrl.js',
+			'app/modules/clientes/clientesRoute.js',
+			'app/modules/clientes/clientesService.js',
+			'app/modules/clientes/clientes-test.js',
 		],
 
 		// Test results reporter to use
