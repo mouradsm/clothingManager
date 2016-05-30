@@ -1,0 +1,24 @@
+<div class="md-padding" flex layout-sm="column" ng-controller="ExtratoCtrl as vm">
+    <md-card>
+        <md-card-content>
+            <h2 class="md-title">Content from: extrato page</h2>
+            <!-- <md-list-item  class="mg-2-line" ng-repeat="cliente in vm.clientes"  flex="33">
+            					<p> {{ cliente.nome }}</p>
+            					<md-list-item ng-repeat="roupa in vm.roupas |filter: cliente.id | filter:roupa.vendido != false">
+            						<p>{{roupa.descricao}}</p>
+            					</md-list-item>
+            			</md-list-item> -->
+		<ul>
+			<li ng-repeat="cliente in vm.clientes">
+				<ul> <b>{{cliente.nome}}</b>
+					<li style="padding-left:20px" ng-repeat="roupa in vm.roupas |filter: cliente.id |filter: roupa.vendido != false">
+						{{roupa.descricao + ' - R$ ' + roupa.valor}}
+
+					</li>
+					{{vm.extrato()}}					
+				</ul>
+			</li>
+		</ul>
+        </md-card-content>
+    </md-card>
+</div>

@@ -23,6 +23,7 @@
 		'home',
 		'roupas',
 		'clientes',
+		'extrato'
 	]);
 
 })();

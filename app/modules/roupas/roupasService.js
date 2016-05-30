@@ -32,7 +32,7 @@
 
 			function getRoupasList() {
 				var data = $firebaseArray(ref.child('itens'));
-				console.log(data);
+				
 				return data;
 			}
 

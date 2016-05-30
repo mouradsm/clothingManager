@@ -1,5 +1,5 @@
 /*!
-* clothingmanager - v0.0.1 - MIT LICENSE 2016-05-14. 
+* clothingmanager - v0.0.1 - MIT LICENSE 2016-05-30. 
 * @author Angmodular
 */
 (function() {
@@ -17,15 +17,16 @@
 	angular.module('clothingmanager', [
 		'ngResource',
 		'ngAria',
-		 'ngMaterial',
+		'ngMaterial',
 		'ngMdIcons',
 		'ngCookies',
 		'ngAnimate',
 		'ngSanitize',
-		'firebase',
 		'ui.router',
+		'firebase',
 		'home',
 		'roupas',
+		'clientes',
 	]);
 
 })();
@@ -73,6 +74,36 @@
 
 		})();
 
+(function () {
+	'use strict';
+
+	/**
+	 * @ngdoc function
+	 * @name app.module:clientesModule
+	 * @description
+	 * # clientesModule
+	 * Module of the app
+	 */
+
+  	angular.module('clientes', []);
+
+})();
+
+(function () {
+	'use strict';
+
+	/**
+	 * @ngdoc function
+	 * @name app.module:extratoModule
+	 * @description
+	 * # extratoModule
+	 * Module of the app
+	 */
+
+  	angular.module('extrato', []);
+
+})();
+
 (function() {
 	'use strict';
 
@@ -101,6 +132,54 @@
   	angular.module('roupas', []);
 
 })();
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name app.route:clientesRoute
+ * @description
+ * # clientesRoute
+ * Route of the app
+ */
+
+angular.module('clientes')
+	.config(['$stateProvider', function ($stateProvider) {
+		
+		$stateProvider
+			.state('home.clientes', {
+				url:'/clientes',
+				templateUrl: 'app/modules/clientes/clientes.html',
+				controller: 'ClientesCtrl',
+				controllerAs: 'vm'
+			});
+
+		
+	}]);
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name app.route:extratoRoute
+ * @description
+ * # extratoRoute
+ * Route of the app
+ */
+
+angular.module('extrato')
+	.config(['$stateProvider', function ($stateProvider) {
+		
+		$stateProvider
+			.state('home.extrato', {
+				url:'/extrato',
+				templateUrl: 'app/modules/extrato/extrato.html',
+				controller: 'ExtratoCtrl',
+				controllerAs: 'vm'
+			});
+
+		
+	}]);
 
 'use strict';
 
@@ -149,10 +228,87 @@ angular.module('roupas')
 				templateUrl: 'app/modules/roupas/roupas.html',
 				controller: 'RoupasCtrl',
 				controllerAs: 'vm'
+			}).state('home.roupas-vendidas', {
+				url:'/roupas',
+				templateUrl: 'app/modules/roupas/roupas-vendidas.html',
+				controller: 'RoupasVendidasCtrl',
+				controllerAs: 'vm'
+			}).state('home.roupas-cadastro', {
+				url:'/roupas',
+				templateUrl: 'app/modules/roupas/roupas-cadastro.html',
+				controller: 'RoupasCadastroCtrl',
+				controllerAs: 'vm'
 			});
 
 		
 	}]);
+
+(function() {
+	'use strict';
+
+	/**
+	* @ngdoc function
+	* @name app.controller:clientesCtrl
+	* @description
+	* # clientesCtrl
+	* Controller of the app
+	*/
+
+  	angular
+		.module('clientes')
+		.controller('ClientesCtrl', Clientes);
+
+		Clientes.$inject = ['ClientesService'];
+
+		/*
+		* recommend
+		* Using function declarations
+		* and bindable members up top.
+		*/
+
+		function Clientes(ClientesService) {
+			/*jshint validthis: true */
+			var vm = this;
+
+			vm.cadastrar = (function(){
+				ClientesService.cadastrarCliente(vm.id, vm.nome);
+				vm.id = undefined;
+				vm.nome = undefined;
+			});
+		}
+
+})();
+
+(function() {
+	'use strict';
+
+	/**
+	* @ngdoc function
+	* @name app.controller:extratoCtrl
+	* @description
+	* # extratoCtrl
+	* Controller of the app
+	*/
+
+  	angular
+		.module('extrato')
+		.controller('ExtratoCtrl', Extrato);
+
+		Extrato.$inject = [];
+
+		/*
+		* recommend
+		* Using function declarations
+		* and bindable members up top.
+		*/
+
+		function Extrato() {
+			/*jshint validthis: true */
+			var vm = this;
+
+		}
+
+})();
 
 (function () {
 	'use strict';
@@ -398,6 +554,44 @@ angular.module('roupas')
 
   	angular
 		.module('roupas')
+		.controller('RoupasCadastroCtrl', Roupas);
+
+		Roupas.$inject = ['RoupasService'];
+
+		/*
+		* recommend
+		* Using function declarations
+		* and bindable members up top.
+		*/
+
+		function Roupas(RoupasService) {
+			/*jshint validthis: true */
+			var vm = this;
+
+			vm.clientes = RoupasService.getClientesList();
+
+			vm.cadastrar = (function(){
+				RoupasService.cadastrarRoupa(vm.select,vm.desc,vm.valor);
+				vm.select = undefined;
+				vm.desc = undefined;
+				vm.valor = undefined;
+			});
+		}
+})();
+
+(function() {
+	'use strict';
+
+	/**
+	* @ngdoc function
+	* @name app.controller:roupasCtrl
+	* @description
+	* # roupasCtrl
+	* Controller of the app
+	*/
+
+  	angular
+		.module('roupas')
 		.controller('RoupasCtrl', Roupas);
 
 		Roupas.$inject = ['RoupasService'];
@@ -411,8 +605,163 @@ angular.module('roupas')
 		function Roupas(RoupasService) {
 			/*jshint validthis: true */
 			var vm = this;
+
 			vm.roupas = RoupasService.getRoupasList();
-			// console.log(RoupasService.getRoupasList());
+			vm.clientes = RoupasService.getClientesList();
+			vm.selectedItens = [];
+
+			vm.clearValue = (function() {
+				vm.search = undefined;
+			});
+
+			vm.Vender = (function(){
+				RoupasService.venderRoupa(vm.selectedItens);
+				vm.selectedItens = [];
+			});
+
+			vm.pega = (function(){
+				 var a = RoupasService.getClienteByItemId('001');
+				 return a;
+			});
+
+			vm.toggle = (function (item, list){
+				var idx = list.indexOf(item);
+
+				if(idx > -1) 
+					list.splice(idx, 1);
+				
+				if(idx == -1)
+					list.push(item);
+			});
+
+			vm.exists = (function (item, list) {
+				return list.indexOf(item) > -1;
+			});
+		}
+})();
+
+(function() {
+	'use strict';
+
+	/**
+	* @ngdoc function
+	* @name app.controller:roupasCtrl
+	* @description
+	* # roupasCtrl
+	* Controller of the app
+	*/
+
+  	angular
+		.module('roupas')
+		.controller('RoupasVendidasCtrl', Roupas);
+
+		Roupas.$inject = ['RoupasService'];
+
+		/*
+		* recommend
+		* Using function declarations
+		* and bindable members up top.
+		*/
+
+		function Roupas(RoupasService) {
+			/*jshint validthis: true */
+			var vm = this;
+
+			vm.roupas = RoupasService.getRoupasList();
+			vm.clientes = RoupasService.getClientesList();
+			vm.selectedItens = [];
+
+			vm.clearValue = (function() {
+				vm.search = undefined;
+			});
+
+			vm.Devolver = (function(){
+				RoupasService.devolverRoupa(vm.selectedItens);
+				vm.selectedItens = [];
+			});
+
+			vm.toggle = (function (item, list){
+				var idx = list.indexOf(item);
+				if(idx > -1) 
+					list.splice(idx, 1);
+				
+				if(idx == -1)
+					list.push(item);
+			});
+
+			vm.exists = (function (item, list) {
+				return list.indexOf(item) > -1;
+			});
+		}
+})();
+
+(function() {
+	'use strict';
+
+	/**
+	 * @ngdoc function
+	 * @name app.service:clientesService
+	 * @description
+	 * # clientesService
+	 * Service of the app
+	 */
+
+  	angular
+		.module('clientes')
+		.factory('ClientesService', Clientes);
+		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
+		// function Name ($http, someSevide) {...}
+
+		Clientes.$inject = ['$http','$firebaseArray', '$firebaseObject'];
+
+		function Clientes ($http, $firebaseArray, $firebaseObject) {
+			var ref = new Firebase("https://burning-fire-7475.firebaseio.com/");
+
+			return {
+				cadastrarCliente: cadastrarCliente,
+			}
+			
+			function cadastrarCliente(id, nome) {
+				var clienteRef = ref.child('clientes');
+				
+				clienteRef.child(id).set({
+					'id': id,
+					'nome': nome
+				});			
+			}
+		}
+
+})();
+
+(function() {
+	'use strict';
+
+	/**
+	 * @ngdoc function
+	 * @name app.service:extratoService
+	 * @description
+	 * # extratoService
+	 * Service of the app
+	 */
+
+  	angular
+		.module('extrato')
+		.factory('ExtratoService', Extrato);
+		// Inject your dependencies as .$inject = ['$http', 'someSevide'];
+		// function Name ($http, someSevide) {...}
+
+		Extrato.$inject = ['$http','$firebaseArray','$firebaseObject'];
+
+		function Extrato ($http,$firebaseArray, $firebaseObject) {
+			var ref = new Firebase("https://burning-fire-7475.firebaseio.com/");
+
+			return {
+				getExtrato: getExtrato,
+			}
+
+			function getExtrato () {
+
+			}
 		}
 
 })();
@@ -488,6 +837,11 @@ angular.module('roupas')
 							name: 'Roupas'
 					},
 			    
+					{
+						link: 'clientes',
+							name: 'Clientes'
+					},
+			    
 		  	];
 
 			return {
@@ -527,7 +881,18 @@ angular.module('roupas')
 						link: 'roupas',
 							name: 'Roupas'
 					},
-			    
+					{
+						link: 'roupas-vendidas',
+							name:'Roupas Vendidas'
+					},
+					{
+						link: 'roupas-cadastro',
+							name:'Cadastro Roupas'
+					},
+					{
+						link: 'clientes',
+							name: 'Clientes'
+					}			    
 		  	];
 
 			return {
@@ -564,11 +929,86 @@ angular.module('roupas')
 
 			return {
 				getRoupasList: getRoupasList,
+				getClientesList: getClientesList,
+				venderRoupa: venderRoupa,
+				devolverRoupa: devolverRoupa,
+				getClienteByItemId: getClienteByItemId,
+				cadastrarRoupa: cadastrarRoupa,
+				cadastrarCliente: cadastrarCliente
 			};
 
 			function getRoupasList() {
-				var data = $firebaseObject(ref.child('itens'));
+				var data = $firebaseArray(ref.child('itens'));
+				console.log(data);
 				return data;
+			}
+
+			function getClientesList() {
+				var data = $firebaseArray(ref.child('clientes'));
+
+				return data;
+			}
+
+ 			function getClienteByItemId(id) {
+				var cliente;
+				ref.child('itens/'+(id-1)).on('value', function(itemSnap){
+					ref.child('clientes').child(itemSnap.child('cliente_id').val()).on('value', function(snap){
+						cliente = snap.child('nome').val();
+					});			
+				});				
+
+				return cliente;
+			}
+
+			//TODO: REFATORAR PARA UMA FUNÇÃO SÓ
+			function venderRoupa(itens) {
+				itens.forEach(function(item){
+					//TODO: REFACTOR NESSA COISA HORRÍVEL
+					ref.child('itens/' + item).update({
+						"vendido": true
+					}, function(err){
+						if(err)
+							return err;
+					});
+				});
+			}
+
+			function devolverRoupa(itens) {
+				itens.forEach(function(item){
+					//TODO: REFACTOR NESSA COISA HORRÍVEL
+					ref.child('itens/'+ item).update({
+						"vendido": false
+					}, function(err){
+						if(err)
+							return err;
+					});
+				});
+			}
+
+			function cadastrarRoupa(cid, dsc, vl) {
+				var itensRef = ref.child('itens')
+				var itensArr = $firebaseArray(itensRef);
+				var cliente_id 	= cid;
+				var descricao 	= dsc;
+				var valor		= vl;
+
+				itensArr.$add({
+					'cliente_id': cliente_id,
+					'descricao': descricao,
+					'valor': valor,
+					'vendido': false
+				}).then(function(itemRef){
+					console.log('added: ' + itemRef.key());
+				});
+			}
+
+			function cadastrarCliente(id, nome) {
+				var clienteRef = ref.child('clientes');
+				
+				clienteRef.child(id).set({
+					'id': id,
+					'nome': nome
+				});			
 			}
 		}
 	})();

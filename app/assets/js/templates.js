@@ -1,6 +1,47 @@
 angular.module('clothingmanager').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('app/modules/clientes/clientes.html',
+    "<div ng-controller=\"RoupasCadastroCtrl\" layout=\"column\" ng-cloak>\n" +
+    "	<md-card>\n" +
+    "		<md-card-content>\n" +
+    "			<md-content layout-padding>\n" +
+    "				<div>\n" +
+    "			      <form name=\"userForm\"> \n" +
+    "			        <div layout-gt-sm=\"row\" layout-gt-md=\"column\" layout-md=\"row\" layout-sm=\"row\" layout-xl=\"row\">\n" +
+    "				        <md-input-container class=\"md-block\" flex-md=\"20\" flex-sm=\"20\" flex-xl=\"20\">\n" +
+    "				          <label>Código</label>\n" +
+    "				          <input ng-model=\"vm.id\">\n" +
+    "			        	</md-input-container>\n" +
+    "				        <md-input-container class=\"md-block\" flex-md=\"70\" flex-sm=\"80\" flex-xl=\"80\">\n" +
+    "				            <label>Nome</label>\n" +
+    "				            <input ng-model=\"vm.nome\" >\n" +
+    "				        </md-input-container>\n" +
+    "			        </div>\n" +
+    "			        <section layout=\"row\" layout-md=\"row\" layout-align=\"center center\" layout-wrap>\n" +
+    "							<md-button aria-label=\"vender\" flex=\"20\" flex-md=\"100\" class=\"md-raised md-primary\" ng-click=\"vm.cadastrar()\">Cadastrar</md-button>\n" +
+    "						</section>\n" +
+    "	      		  </form>\n" +
+    "				</div>\n" +
+    "	  		</md-content>\n" +
+    "		</md-card-content>\n" +
+    "	</md-card>\n" +
+    "</div>\n" +
+    "\n"
+  );
+
+
+  $templateCache.put('app/modules/extrato/extrato.html',
+    "<div class=\"md-padding\" flex layout-sm=\"column\">\n" +
+    "    <md-card>\n" +
+    "        <md-card-content>\n" +
+    "            <h2 class=\"md-title\">Content from: extrato page</h2>\n" +
+    "        </md-card-content>\n" +
+    "    </md-card>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('app/modules/home/dashboard.html',
     "<div class=\"md-padding\" flex layout-sm=\"column\">\n" +
     "    <md-card class=\"text-center\">\n" +
@@ -50,13 +91,13 @@ angular.module('clothingmanager').run(['$templateCache', function($templateCache
     "                <p > {{ item.name }}</p>\n" +
     "            </md-list-item>\n" +
     "            <md-divider></md-divider>\n" +
-    "            <md-subheader>Admin</md-subheader>\n" +
+    "            <!-- <md-subheader>Admin</md-subheader>\n" +
     "            <md-list-item ng-repeat=\"item in vm.admin\" ng-click=\"vm.showSettingsBottom($event)\" >\n" +
     "                <div class=\"inset\">\n" +
     "                    <ng-md-icon icon=\"{{item.icon}}\"></ng-md-icon>\n" +
     "                </div>\n" +
     "                <p> {{ item.title }}</p>\n" +
-    "            </md-list-item>\n" +
+    "            </md-list-item> -->\n" +
     "        </md-list>\n" +
     "    </div>\n" +
     "</md-sidenav>\n" +
@@ -221,27 +262,94 @@ angular.module('clothingmanager').run(['$templateCache', function($templateCache
   );
 
 
+  $templateCache.put('app/modules/roupas/roupas-cadastro.html',
+    "<div ng-controller=\"RoupasCadastroCtrl\" layout=\"column\" ng-cloak>\n" +
+    "	<md-card>\n" +
+    "		<md-card-content>\n" +
+    "			<md-content layout-padding>\n" +
+    "				<div>\n" +
+    "			      <form name=\"userForm\"> \n" +
+    "			        <div layout-gt-sm=\"row\" layout-gt-md=\"column\" layout-md=\"row\" layout-lg=\"column\">\n" +
+    "				        <md-input-container class=\"md-block\" flex-md=\"10\" flex-lg=\"100\">\n" +
+    "				          <label>Dono</label>	\n" +
+    "					      <md-select ng-model=\"vm.select\">\n" +
+    "					        <md-option ng-repeat=\"cliente in vm.clientes\" value=\"{{cliente.id}}\">\n" +
+    "					           {{cliente.id + ' - ' + cliente.nome}}\n" +
+    "					        </md-option>\n" +
+    "				           </md-select>\n" +
+    "			            </md-input-container>\n" +
+    "				        <md-input-container class=\"md-block\" flex-md=\"70\" flex-lg=\"20\">\n" +
+    "				          <label>Descrição</label>\n" +
+    "				          <input ng-model=\"vm.desc\">\n" +
+    "			        	</md-input-container>\n" +
+    "				        <md-input-container class=\"md-block\" flex-md=\"20\" flex-lg=\"80\">\n" +
+    "				            <label>Preço</label>\n" +
+    "				            <input ng-model=\"vm.valor\" type=\"number\">\n" +
+    "				        </md-input-container>\n" +
+    "			        </div>\n" +
+    "			        <section layout=\"row\" layout-md=\"row\" layout-align=\"center center\" layout-wrap>\n" +
+    "							<md-button aria-label=\"vender\" flex=\"20\" flex-md=\"100\" class=\"md-raised md-primary\" ng-click=\"vm.cadastrar()\">Cadastrar</md-button>\n" +
+    "						</section>\n" +
+    "	      		  </form>\n" +
+    "				</div>\n" +
+    "	  		</md-content>\n" +
+    "		</md-card-content>\n" +
+    "	</md-card>\n" +
+    "</div>\n" +
+    "\n"
+  );
+
+
+  $templateCache.put('app/modules/roupas/roupas-vendidas.html',
+    "<div class=\"md-padding\" layout=\"column\" ng-controller=\"RoupasVendidasCtrl as vm\" ng-cloak>\n" +
+    "	<md-card>\n" +
+    "		<md-card-content>\n" +
+    "			<md-content>\n" +
+    "				<h2 class=\"md-title text-center\">Listagem de Roupas Vendidas</h2>\n" +
+    "				<md-list-item  ng-repeat=\"item in vm.roupas |filter: item.vendido != false\"  flex=\"33\">\n" +
+    "					<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>\n" +
+    "					<md-checkbox class='md-secondary' ng-checked=\"vm.exists(item.$id, vm.selectedItens)\" ng-click=\"vm.toggle(item.$id, vm.selectedItens)\" ng-value=\"{{item.id}}\"></md-checkbox>\n" +
+    "				</md-list-item>\n" +
+    "				<md-divider></md-divider>\n" +
+    "				<section layout=\"row\" layout-md=\"row\" layout-align=\"center center\" layout-wrap>\n" +
+    "					<md-button aria-label=\"vender\" flex=\"20\" flex-md=\"100\" class=\"md-raised md-primary\" ng-click=\"vm.Devolver()\">Devolver</md-button>\n" +
+    "				</section>\n" +
+    "			</md-content>\n" +
+    "		</md-card-content>\n" +
+    "	</md-card>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('app/modules/roupas/roupas.html',
     "<div class=\"md-padding\" layout=\"column\" ng-controller=\"RoupasCtrl as vm\" ng-cloak>\n" +
     "	<md-card>\n" +
     "		<md-card-content>\n" +
-    "			<h2 class=\"md-title text-center\">Listagem de Roupas</h2>\n" +
-    "			\n" +
-    "			<md-input-container class=\"md-block\" flex-gt-xs>\n" +
-    "		        <label>Busca</label>\n" +
-    "		       	<input ng-model=\"search\">\n" +
-    "	      </md-input-container>\n" +
-    "			\n" +
     "			<md-content>\n" +
-    "				<div flex>\n" +
-    "					<!-- <md-list-item  ng-repeat=\"item in vm.roupas |filter:search\"  flex=\"33\">\n" +
-    "						<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>\n" +
-    "						<md-checkbox class='md-secondary' ng-model='item.selected'></md-checkbox>\n" +
-    "					</md-list-item> -->\n" +
-    "					{{vm.roupas |json}}\n" +
-    "				</div>\n" +
+    "				<h2 class=\"md-title text-center\">Listagem de Roupas</h2>\n" +
+    "				<div class=\"md-padding\" ng-cloak>\n" +
+    "					<div layout=\"row\" layout-align=\"center center\">\n" +
+    "						<md-input-container class=\"md-block\" flex=\"100\">\n" +
+    "							<md-select ng-model=\"vm.search\" aria-label=\"Clientes\">\n" +
+    "								<md-optgroup label=\"items\">\n" +
+    "									<md-option ng-value=\"item.id\" ng-repeat=\"item in vm.clientes\">{{item.id + ' - ' + item.nome |uppercase}}</md-option>\n" +
+    "								</md-optgroup>\n" +
+    "							</md-select>\n" +
+    "						</md-input-container>\n" +
+    "						<md-button aria-label=\"limpar\" ng-click=\"vm.clearValue()\" ng-disabled=\"!vm.search\">\n" +
+    "							<ng-md-icon icon=\"clear\"></ng-md-icon>\n" +
+    "						</md-button>\n" +
+    "					</div>\n" +
+    "				</div>			\n" +
+    "				<md-list-item  ng-repeat=\"item in vm.roupas | filter:vm.search |filter: item.vendido == false\"  flex=\"33\">\n" +
+    "					<p> {{ item.descricao }} - <b>R$ {{item.valor }}</b></p>\n" +
+    "					<md-checkbox aria-label=\"selecionar\" class='md-secondary' ng-checked=\"vm.exists(item.$id, vm.selectedItens)\" ng-click=\"vm.toggle(item.$id, vm.selectedItens)\" ng-value=\"{{item.id}}\"></md-checkbox>\n" +
+    "				</md-list-item>\n" +
+    "				<md-divider></md-divider>\n" +
+    "				<section layout=\"row\" layout-md=\"row\" layout-align=\"center center\" layout-wrap>\n" +
+    "					<md-button aria-label=\"vender\" flex=\"20\" flex-md=\"100\" class=\"md-raised md-primary\" ng-click=\"vm.Vender()\">Vender</md-button>\n" +
+    "				</section>\n" +
     "			</md-content>\n" +
-    "			<md-divider></md-divider>\n" +
     "		</md-card-content>\n" +
     "	</md-card>\n" +
     "</div>\n"

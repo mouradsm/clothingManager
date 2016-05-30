@@ -36,6 +36,10 @@
 					{
 						link: 'clientes',
 							name: 'Clientes'
+					},
+					{
+						link: 'extrato',
+							name: 'Extrato'
 					}			    
 		  	];
 
